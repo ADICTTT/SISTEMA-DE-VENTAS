@@ -114,6 +114,3 @@ precio decimal(8,2),
 total decimal(8,2)
 )
 go
-
-
-
