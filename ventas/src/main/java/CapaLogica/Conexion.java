@@ -13,17 +13,17 @@ import javax.swing.JOptionPane;
 public class Conexion {
     Connection conectar = null;
     
-    String usuario = "user";
-    String contrasenia = "1234";
+    String usuario = "sa";
+    String contrasenia = "adrianacht_1";
     String bd = "db_ventas";
     String ip = "localhost";
     String puerto = "1433";
     
-    String cadena = "jdbc:sqlserver://"+ip+":"+puerto+"/"+bd;
+    String cadena = "jdbc:sqlserver://"+ip+":"+puerto+";databaseName="+bd;
+
     
     public Connection establecerConexion(){
         try{
-            String cadena = "jdbc:sqlserver://localhost:"+puerto+";"+"databaseName"+bd;
             conectar= DriverManager.getConnection(cadena,usuario,contrasenia);
             JOptionPane.showMessageDialog(null, "se conecto correctamente a la base de datos");
         }catch (Exception e){
