@@ -114,3 +114,51 @@ precio decimal(8,2),
 total decimal(8,2)
 )
 go
+
+create proc sp_listar_clientes
+as
+select*from clientes
+go
+
+create proc sp_guardar_clientes
+@codigo varchar(10),
+@nombre varchar(20),
+@apellido varchar(20),
+@cedula varchar(8),
+@edad int,
+@sexo char(1),
+@telefono char(9),
+@direccion varchar(50)
+as
+insert into clientes 
+values (@codigo,@nombre,@apellido,@cedula,@edad,@sexo,@telefono,@direccion)
+go
+
+
+create proc sp_editar_clientes
+@codigo varchar(10),
+@nombre varchar(20),
+@apellido varchar(20),
+@cedula varchar(8),
+@edad int,
+@sexo char(1),
+@telefono char(9),
+@direccion varchar(50)
+as
+update clientes set nombre=@nombre, apellido=@apellido, cedula=@cedula, edad=@edad, sexo=@sexo, telefono=@telefono, direccion=@direccion
+where idcliente=@codigo
+go
+
+
+create proc sp_eliminar_cliente
+@codigo varchar(10)
+as
+delete from clientes where idcliente=@codigo
+go
+
+
+create proc sp_buscar_cliente
+@cedula varchar(8)
+as
+select * from clientes where cedula like @cedula+'%'
+go
