@@ -29,6 +29,10 @@ public class M_Clientes {
         this.direccion = direccion;
     }
 
+    public M_Clientes() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
     public String getCodigo() {
         return codigo;
     }

@@ -27,9 +27,9 @@ public class N_Cliente {
         
         String[] titulos={"Codigo","Nombre","Apellidos","CI","Edad","Sexo","Telefono","Direccion"};
         modelo = new DefaultTableModel(null,titulos);
-        String[] registro = new String [8];
+        String[] registro = new String [9];
         
-        sql=("sp_buscar_cliente'"+buscar+"'");
+        sql=("EXEC sp_buscar_cliente'"+buscar+"'");
         
         try{
             Statement st=cn.createStatement();
@@ -55,7 +55,7 @@ public class N_Cliente {
     }
         
     public boolean insertar(M_Clientes dts){
-        sql = "{call sp_guardar_clientes (?,?,?,?,?,?,?,?)}";            
+        sql = ("{call sp_guardar_clientes (?,?,?,?,?,?,?,?)}");            
         
         try {
             PreparedStatement pst = cn.prepareStatement(sql);
@@ -70,7 +70,11 @@ public class N_Cliente {
                 
             int n = pst.executeUpdate();
                 
-            return n != 0;
+            if(n!=0){
+                return true;
+            }else{
+                return false;
+            }
         } catch (SQLException e) {
             JOptionPane.showConfirmDialog(null, e);
             return false;
@@ -93,7 +97,11 @@ public class N_Cliente {
                 
                 int n=pst.executeUpdate();
                 
-                return n!=0;
+                if(n!=0){
+                return true;
+            }else{
+                return false;
+            }
             }catch(SQLException e){
                 JOptionPane.showConfirmDialog(null, e);
                 return false;
@@ -102,7 +110,7 @@ public class N_Cliente {
         }
         
         public boolean eliminar(M_Clientes dts){
-            sql= ("{call sp_eliminar_clientes (?,?,?,?,?,?,?,?)}");
+            sql= ("{call sp_eliminar_cliente (?,?,?,?,?,?,?,?)}");
             
             try{
                 PreparedStatement pat = cn.prepareStatement(sql);
@@ -130,18 +138,19 @@ public class N_Cliente {
         }
         
         public int generarIdCliente(){
-            String sql=("selec max(idcliente) as id from clientes");
+            String sql = "SELECT MAX(idcliente) as id FROM cliente";
             int cod=0;
             
             try{
                 Statement st=cn.createStatement();
                 ResultSet rs=st.executeQuery(sql);
                 if(rs.next()){
-                    cod=rs.getInt("id+")+1;
+                    cod=rs.getInt("id");
                 }
             }catch(SQLException e){
                 JOptionPane.showMessageDialog(null, e.getMessage());
             }
+            System.out.print(cod);
             return cod;
         }
 }
