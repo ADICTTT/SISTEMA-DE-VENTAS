@@ -289,6 +289,7 @@ public class FrmCliente extends javax.swing.JFrame {
             }
         });
 
+        tablalistado.setAutoCreateRowSorter(true);
         tablalistado.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
