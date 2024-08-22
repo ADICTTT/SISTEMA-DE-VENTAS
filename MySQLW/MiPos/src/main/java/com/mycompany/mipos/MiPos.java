@@ -11,6 +11,7 @@ package com.mycompany.mipos;
 public class MiPos {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+        objetoConexion.estableceConexion();
     }
 }
