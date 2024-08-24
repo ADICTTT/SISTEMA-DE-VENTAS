@@ -37,6 +37,10 @@ public class FormReportesFechas extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         lbltotal = new javax.swing.JLabel();
 
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("REPORTES FECHAS");
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("CONSULTA POR FECHA DE VENTAS"));
 
         jLabel1.setText("Desde:");

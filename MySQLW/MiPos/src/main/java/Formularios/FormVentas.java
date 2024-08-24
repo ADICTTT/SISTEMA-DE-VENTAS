@@ -78,6 +78,10 @@ public class FormVentas extends javax.swing.JInternalFrame {
         lbltotal = new javax.swing.JLabel();
         btncobrar = new javax.swing.JButton();
 
+        setClosable(true);
+        setIconifiable(true);
+        setTitle("VENTAS");
+
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("PRODUCTOS DISPONIBLES"));
 
         jLabel1.setText("Buscador:");
@@ -506,7 +510,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 1013, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
