@@ -44,7 +44,8 @@ public class CConexion {
             JOptionPane.showMessageDialog(null, "NO SE LOGRO CERRAR LA CONEXION: "+e.toString());
         }
     }
-    
-    
-    
+
+    public Object establecerConexion() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }  
 }

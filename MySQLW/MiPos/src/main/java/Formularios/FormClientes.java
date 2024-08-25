@@ -15,6 +15,8 @@ public class FormClientes extends javax.swing.JInternalFrame {
      */
     public FormClientes() {
         initComponents();
+        Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
+        objetoCliente.MostrarClientes(tbclientes);
     }
 
     /**
