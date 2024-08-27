@@ -4,10 +4,12 @@
  */
 package Controlador;
 
+import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -51,5 +53,31 @@ public class ControladorCliente {
         }finally{
             objetoConexion.cerrarConexion();
         }
+    }
+    
+    public void AgregarCliente(JTextField nombres, JTextField appaterno, JTextField apmaterno){
+       Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+       Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+       
+       String consulta = "insert into cliente (nombres,appaterno,apmaterno) values (?,?,?)";
+       
+       try{
+           objetoCliente.setNombres(nombres.getText());
+           objetoCliente.setApPaterno(appaterno.getText());
+           objetoCliente.setApMaterno(apmaterno.getText());
+           
+           CallableStatement cs = objetoConexion.estableceConexion().prepareCall(consulta);
+           cs.setString(1, objetoCliente.getNombres());
+           cs.setString(2, objetoCliente.getApPaterno());
+           cs.setString(3, objetoCliente.getApMaterno());
+           
+           cs.execute();
+           
+           JOptionPane.showMessageDialog(null,"Se guardo correctamente");
+       }catch(Exception e){
+           JOptionPane.showMessageDialog(null,"error al guardar"+e.toString());
+       }finally{
+           objetoConexion.cerrarConexion();
+       }
     }
 }

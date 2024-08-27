@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import Controlador.ControladorCliente;
+
 /**
  *
  * @author ADRIANA
@@ -635,6 +637,12 @@ public class FormClientes extends javax.swing.JInternalFrame {
 
         jLabel24.setText("Ap. Materno:");
 
+        txtnombrescliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtnombresclienteActionPerformed(evt);
+            }
+        });
+
         btnlimpiarcampos4.setText("Limpiar campos");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -834,12 +842,18 @@ public class FormClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btneliminar3ActionPerformed
 
     private void btnguardarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarclienteActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorCliente objetoCliente = new ControladorCliente();
+        objetoCliente.AgregarCliente(txtnombrescliente, txtappaterno, txtapmaterno);
+        objetoCliente.MostrarClientes(tbclientes);
     }//GEN-LAST:event_btnguardarclienteActionPerformed
 
     private void btneliminarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btneliminarclienteActionPerformed
+
+    private void txtnombresclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombresclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombresclienteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

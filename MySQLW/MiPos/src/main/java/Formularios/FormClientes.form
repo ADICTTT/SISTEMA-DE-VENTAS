@@ -991,6 +991,9 @@
         <Component class="javax.swing.JTextField" name="txtidcliente">
         </Component>
         <Component class="javax.swing.JTextField" name="txtnombrescliente">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtnombresclienteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtappaterno">
         </Component>
