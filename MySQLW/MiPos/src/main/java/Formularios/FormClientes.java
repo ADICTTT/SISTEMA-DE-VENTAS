@@ -19,6 +19,7 @@ public class FormClientes extends javax.swing.JInternalFrame {
         initComponents();
         Controlador.ControladorCliente objetoCliente = new Controlador.ControladorCliente();
         objetoCliente.MostrarClientes(tbclientes);
+        txtidcliente.setEnabled(false);
     }
 
     /**
@@ -644,6 +645,11 @@ public class FormClientes extends javax.swing.JInternalFrame {
         });
 
         btnlimpiarcampos4.setText("Limpiar campos");
+        btnlimpiarcampos4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnlimpiarcampos4ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -690,7 +696,7 @@ public class FormClientes extends javax.swing.JInternalFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
-        jLabel25.setText("Click para seleccionar");
+        jLabel25.setText("Seleccionar para Modificar o Eliminar");
 
         tbclientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -703,6 +709,11 @@ public class FormClientes extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbclientesMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(tbclientes);
 
         btnguardarcliente.setText("GUARDAR");
@@ -713,6 +724,11 @@ public class FormClientes extends javax.swing.JInternalFrame {
         });
 
         btnmodificarcliente.setText("MODIFICAR");
+        btnmodificarcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarclienteActionPerformed(evt);
+            }
+        });
 
         btneliminarcliente.setText("ELIMINAR");
         btneliminarcliente.addActionListener(new java.awt.event.ActionListener() {
@@ -725,10 +741,15 @@ public class FormClientes extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(12, Short.MAX_VALUE)
-                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGap(25, 25, 25))))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 476, Short.MAX_VALUE)
@@ -752,25 +773,24 @@ public class FormClientes extends javax.swing.JInternalFrame {
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap(37, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnguardarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(btnmodificarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btneliminarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGap(12, 12, 12))
-                        .addComponent(jLabel25, javax.swing.GroupLayout.Alignment.TRAILING))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(btnguardarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnmodificarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(18, 18, 18)
+                            .addComponent(btneliminarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 868, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(12, 12, 12)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(15, 15, 15)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(361, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel25)
+                .addContainerGap(333, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 234, Short.MAX_VALUE)
@@ -793,9 +813,7 @@ public class FormClientes extends javax.swing.JInternalFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                    .addGap(118, 118, 118)
-                    .addComponent(jLabel25)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addGap(146, 146, 146)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -845,15 +863,37 @@ public class FormClientes extends javax.swing.JInternalFrame {
         Controlador.ControladorCliente objetoCliente = new ControladorCliente();
         objetoCliente.AgregarCliente(txtnombrescliente, txtappaterno, txtapmaterno);
         objetoCliente.MostrarClientes(tbclientes);
+        objetoCliente.LimpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
     }//GEN-LAST:event_btnguardarclienteActionPerformed
 
     private void btneliminarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarclienteActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorCliente objetoCliente = new ControladorCliente();
+        objetoCliente.EliminarClientes(txtidcliente);
+        objetoCliente.MostrarClientes(tbclientes);
+        objetoCliente.LimpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+   
     }//GEN-LAST:event_btneliminarclienteActionPerformed
 
     private void txtnombresclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtnombresclienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtnombresclienteActionPerformed
+
+    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
+        Controlador.ControladorCliente objetoCliente = new ControladorCliente();
+        objetoCliente.Seleccionar(tbclientes, txtidcliente,txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_tbclientesMouseClicked
+
+    private void btnmodificarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarclienteActionPerformed
+        Controlador.ControladorCliente objetoCliente = new ControladorCliente();
+        objetoCliente.ModificarCliente(txtidcliente,txtnombrescliente, txtappaterno, txtapmaterno);
+        objetoCliente.MostrarClientes(tbclientes);
+        objetoCliente.LimpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_btnmodificarclienteActionPerformed
+
+    private void btnlimpiarcampos4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcampos4ActionPerformed
+        Controlador.ControladorCliente objetoCliente = new ControladorCliente();
+        objetoCliente.LimpiarCamposClientes(txtidcliente, txtnombrescliente, txtappaterno, txtapmaterno);
+    }//GEN-LAST:event_btnlimpiarcampos4ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

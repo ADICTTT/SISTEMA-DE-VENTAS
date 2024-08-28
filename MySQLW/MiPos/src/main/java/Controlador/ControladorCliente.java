@@ -80,4 +80,79 @@ public class ControladorCliente {
            objetoConexion.cerrarConexion();
        }
     }
+    
+    public void Seleccionar(JTable totalcliente, JTextField id, JTextField nombres, JTextField appaterno, JTextField apmaterno){
+        int fila = totalcliente.getSelectedRow();
+        try{
+            if(fila>=0){
+                id.setText(totalcliente.getValueAt(fila, 0).toString());
+                nombres.setText(totalcliente.getValueAt(fila, 1).toString());
+                appaterno.setText(totalcliente.getValueAt(fila, 2).toString());
+                apmaterno.setText(totalcliente.getValueAt(fila, 3).toString());
+            }
+        }catch(Exception e){
+            JOptionPane.showMessageDialog(null, "Error al seleccionar: "+e.toString());
+        }
+    }
+    
+    public void ModificarCliente(JTextField id, JTextField nombres, JTextField appaterno, JTextField apmaterno){
+        Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+        Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+        String consulta = "UPDATE cliente SET cliente.nombres=?, cliente.appaterno=?,cliente.apmaterno = ? WHERE cliente.idcliente=?";
+        
+        try {
+            objetoCliente.setIdCliente(Integer.parseInt(id.getText()));
+            objetoCliente.setNombres(nombres.getText());
+            objetoCliente.setApPaterno(appaterno.getText());
+            objetoCliente.setApMaterno(apmaterno.getText());
+            
+            CallableStatement cs= objetoConexion.estableceConexion().prepareCall(consulta);
+            cs.setString(1, objetoCliente.getNombres());
+            cs.setString(2, objetoCliente.getApPaterno());
+            cs.setString(3, objetoCliente.getApMaterno());
+            cs.setInt(4, objetoCliente.getIdCliente());
+            
+            cs.execute();
+            
+            JOptionPane.showMessageDialog(null, "Se modifico correctamente");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al modificar: " + e.toString());
+        }finally{
+            objetoConexion.cerrarConexion();
+        }
+        
+    }
+    
+    
+    public void LimpiarCamposClientes(JTextField id,JTextField nombres,JTextField appaterno, JTextField apmaterno ){
+        id.setText("");
+        nombres.setText("");
+        appaterno.setText("");
+        apmaterno.setText("");
+    }
+    
+    public void EliminarClientes(JTextField id){
+        Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+        Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+        
+        String consulta = "delete from cliente where cliente.idcliente=?;";
+        
+        try {
+           objetoCliente.setIdCliente(Integer.parseInt(id.getText()));
+           
+           CallableStatement cs= objetoConexion.estableceConexion().prepareCall(consulta);
+           
+           cs.setInt(1, objetoCliente.getIdCliente());
+           
+           cs.execute();
+           
+           JOptionPane.showMessageDialog(null, "Se elimino correctamente");
+        } catch(Exception e){
+            JOptionPane.showMessageDialog(null, "No se elimino correctamente: "+e.toString());
+        }
+        finally {
+            objetoConexion.cerrarConexion();
+        }
+    }
+    
 }
