@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import Controlador.ControladorProducto;
+
 /**
  *
  * @author ADRIANA
@@ -15,6 +17,9 @@ public class FormProducto extends javax.swing.JInternalFrame {
      */
     public FormProducto() {
         initComponents();
+        Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+        objetoProducto.MostrarProductos(tbproductos);
+        txtidproducto.setEnabled(false);
     }
 
     /**
@@ -120,6 +125,11 @@ public class FormProducto extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbproductos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbproductosMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbproductos);
 
         jLabel5.setText("Click para seleccionar");
@@ -132,6 +142,11 @@ public class FormProducto extends javax.swing.JInternalFrame {
         });
 
         btnmodificar.setText("MODIFICAR");
+        btnmodificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnmodificarActionPerformed(evt);
+            }
+        });
 
         btneliminar.setText("ELIMINAR");
         btneliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -183,16 +198,35 @@ public class FormProducto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnguardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnguardarActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+        objetoProducto.AgregarProducto(txtnombreproducto, txtprecioproducto, txtstockproducto);
+        objetoProducto.MostrarProductos(tbproductos);
+        objetoProducto.LimpiarCamposProducto(txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
     }//GEN-LAST:event_btnguardarActionPerformed
 
     private void btneliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+        objetoProducto.EliminarProducto(txtidproducto);
+        objetoProducto.MostrarProductos(tbproductos);
+        objetoProducto.LimpiarCamposProducto(txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
     }//GEN-LAST:event_btneliminarActionPerformed
 
     private void btnlimpiarcamposActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlimpiarcamposActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+        objetoProducto.LimpiarCamposProducto(txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
     }//GEN-LAST:event_btnlimpiarcamposActionPerformed
+
+    private void tbproductosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbproductosMouseClicked
+        Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+        objetoProducto.Seleccionar(tbproductos, txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
+    }//GEN-LAST:event_tbproductosMouseClicked
+
+    private void btnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodificarActionPerformed
+      Controlador.ControladorProducto objetoProducto = new Controlador.ControladorProducto();
+      objetoProducto.ModificarProducto(txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
+      objetoProducto.MostrarProductos(tbproductos);
+      objetoProducto.LimpiarCamposProducto(txtidproducto, txtnombreproducto, txtprecioproducto, txtstockproducto);
+    }//GEN-LAST:event_btnmodificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
