@@ -57,4 +57,20 @@ public class ControladorVenta {
             tablaproductos.setDefaultEditor(ColumClass, null);
         }
     }
+    
+    public void SeleccionarProductoVenta(JTable tablaProducto, JTextField id, JTextField nombres, JTextField precioProducto, JTextField stock, JTextField precioFinal){
+        int fila = tablaProducto.getSelectedRow();
+        
+        try {
+            if(fila>=0){
+                id.setText(tablaProducto.getValueAt(fila, 0).toString());
+                nombres.setText(tablaProducto.getValueAt(fila, 1).toString());
+                precioProducto.setText(tablaProducto.getValueAt(fila, 2).toString());
+                stock.setText(tablaProducto.getValueAt(fila, 3).toString());
+                precioFinal.setText(tablaProducto.getValueAt(fila, 2).toString());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de seleccion: "+e.toString());
+        }
+    }
 }
