@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import Controlador.ControladorVenta;
+
 /**
  *
  * @author ADRIANA
@@ -86,6 +88,12 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Buscador:");
 
+        txtbuscarproductos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscarproductosKeyReleased(evt);
+            }
+        });
+
         jLabel2.setText("Click para seleccionar");
 
         tbproductos.setModel(new javax.swing.table.DefaultTableModel(
@@ -138,6 +146,18 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("CLIENTES DISPONIBLES"));
 
         jLabel3.setText("Buscador:");
+
+        txtbuscarcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtbuscarclienteKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtbuscarclienteKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtbuscarclienteKeyTyped(evt);
+            }
+        });
 
         jLabel4.setText("Click para seleccionar");
 
@@ -416,21 +436,6 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(136, Short.MAX_VALUE))
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel16)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btneliminarresumenventa)
-                        .addGap(165, 165, 165))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel20)
@@ -441,6 +446,22 @@ public class FormVentas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbliva)
                 .addGap(196, 196, 196))
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 962, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 575, Short.MAX_VALUE)
+                        .addComponent(jLabel17)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btneliminarresumenventa)
+                        .addGap(165, 165, 165))))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -456,7 +477,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                             .addComponent(jLabel16))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel18)
                     .addComponent(lbliva)
@@ -496,7 +517,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btncobrar, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                .addComponent(btncobrar, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -547,6 +568,23 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btncobrarActionPerformed
+
+    private void txtbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyReleased
+
+    }//GEN-LAST:event_txtbuscarclienteKeyReleased
+
+    private void txtbuscarclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyTyped
+
+    }//GEN-LAST:event_txtbuscarclienteKeyTyped
+
+    private void txtbuscarclienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyPressed
+        // TODO a handling code here:
+    }//GEN-LAST:event_txtbuscarclienteKeyPressed
+
+    private void txtbuscarproductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarproductosKeyReleased
+                Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.BuscarProducto(txtbuscarproductos, tbproductos);
+    }//GEN-LAST:event_txtbuscarproductosKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

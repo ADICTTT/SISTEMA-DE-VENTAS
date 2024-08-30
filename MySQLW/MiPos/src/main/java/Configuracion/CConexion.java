@@ -27,9 +27,9 @@ public class CConexion {
         try{
            Class.forName("com.mysql.jdbc.Driver");
            conectar = DriverManager.getConnection(cadena,usuario,contrasenia);
-           JOptionPane.showMessageDialog(null,"Conexion correcta a la base de datos");
+          // JOptionPane.showMessageDialog(null,"Conexion correcta a la base de datos");
        }catch(Exception e){
-           JOptionPane.showMessageDialog(null,"NO SE CONECTO A LA BASE DE DATOS:"+e.toString());
+          // JOptionPane.showMessageDialog(null,"NO SE CONECTO A LA BASE DE DATOS:"+e.toString());
         }
         return conectar; 
     }
@@ -38,10 +38,10 @@ public class CConexion {
         try{
             if(conectar!=null && !conectar.isClosed()){
                 conectar.close();
-                JOptionPane.showMessageDialog(null, "La conexion fue cerrada");
+               // JOptionPane.showMessageDialog(null, "La conexion fue cerrada");
             }
         }catch(Exception e){
-            JOptionPane.showMessageDialog(null, "NO SE LOGRO CERRAR LA CONEXION: "+e.toString());
+          //  JOptionPane.showMessageDialog(null, "NO SE LOGRO CERRAR LA CONEXION: "+e.toString());
         }
     }
 
