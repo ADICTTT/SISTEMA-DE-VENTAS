@@ -73,4 +73,60 @@ public class ControladorVenta {
             JOptionPane.showMessageDialog(null, "Error de seleccion: "+e.toString());
         }
     }
+    
+        public void BuscarCliente(JTextField nombreCliente, JTable tablaCliente){
+        Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+        Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+        
+        DefaultTableModel modelo = new DefaultTableModel();
+        modelo.addColumn("id");
+        modelo.addColumn("Nombres");
+        modelo.addColumn("ApPaterno");
+        modelo.addColumn("ApMaterno");
+        
+        tablaCliente.setModel(modelo);
+        
+        try {
+            String consulta = "select * from cliente where cliente.nombres like concat('%',?,'%'); ";
+            PreparedStatement ps = objetoConexion.estableceConexion().prepareStatement(consulta);
+            
+            ps.setString(1, nombreCliente.getText());
+            
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                objetoCliente.setIdCliente(rs.getInt("idcliente"));
+                objetoCliente.setNombres(rs.getString("nombres"));
+                objetoCliente.setApPaterno(rs.getString("appaterno"));
+                objetoCliente.setApMaterno(rs.getString("apmaterno"));
+                
+                modelo.addRow(new Object[]{objetoCliente.getIdCliente(), objetoCliente.getNombres(),objetoCliente.getApPaterno(),objetoCliente.getApMaterno()});   
+            }
+            tablaCliente.setModel(modelo);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al buscar: "+e.toString());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
+        
+        for(int colum = 0; colum<tablaCliente.getColumnCount();colum++){
+            Class <?> ColumClass = tablaCliente.getColumnClass(colum);
+            tablaCliente.setDefaultEditor(ColumClass, null);
+        }
+    }
+        
+        public void SeleccionarClienteVenta(JTable tablaCliente, JTextField id, JTextField nombres, JTextField appaterno, JTextField apmaterno){
+        int fila = tablaCliente.getSelectedRow();
+        
+        try {
+            if(fila>=0){
+                id.setText(tablaCliente.getValueAt(fila, 0).toString());
+                nombres.setText(tablaCliente.getValueAt(fila, 1).toString());
+                appaterno.setText(tablaCliente.getValueAt(fila, 2).toString());
+                apmaterno.setText(tablaCliente.getValueAt(fila, 3).toString());
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error de seleccion: "+e.toString());
+        }
+    }
 }

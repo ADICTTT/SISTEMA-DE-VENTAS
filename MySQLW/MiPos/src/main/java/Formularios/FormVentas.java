@@ -17,6 +17,17 @@ public class FormVentas extends javax.swing.JInternalFrame {
      */
     public FormVentas() {
         initComponents();
+        
+        txtsidproducto.setEnabled(false);
+        txtsnombreproducto.setEnabled(false);
+        txtsprecio.setEnabled(false);
+        txtsstock.setEnabled(false);
+        txtsprecioventa.setEnabled(false);
+        
+        txtsidcliente.setEnabled(false);
+        txtsnombrecliente.setEnabled(false);
+        txtsappaterno.setEnabled(false);
+        txtsapmaterno.setEnabled(false);
     }
 
     /**
@@ -36,7 +47,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
         tbproductos = new javax.swing.JTable();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtbuscarcliente = new javax.swing.JTextField();
+        txtsbuscarcliente = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbclientes = new javax.swing.JTable();
@@ -152,15 +163,15 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Buscador:");
 
-        txtbuscarcliente.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtsbuscarcliente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtbuscarclienteKeyPressed(evt);
+                txtsbuscarclienteKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtbuscarclienteKeyReleased(evt);
+                txtsbuscarclienteKeyReleased(evt);
             }
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                txtbuscarclienteKeyTyped(evt);
+                txtsbuscarclienteKeyTyped(evt);
             }
         });
 
@@ -177,6 +188,16 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
             }
         ));
+        tbclientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbclientesMouseClicked(evt);
+            }
+        });
+        tbclientes.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbclientesKeyReleased(evt);
+            }
+        });
         jScrollPane2.setViewportView(tbclientes);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -195,7 +216,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtsbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
@@ -205,7 +226,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtsbuscarcliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -229,6 +250,14 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jLabel7.setText("Ap. Paterno:");
 
         jLabel8.setText("Ap. Materno:");
+
+        txtsidcliente.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+
+        txtsnombrecliente.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+
+        txtsappaterno.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+
+        txtsapmaterno.setDisabledTextColor(new java.awt.Color(0, 102, 102));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -287,12 +316,18 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         jLabel12.setText("Stock:");
 
+        txtsidproducto.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+
+        txtsnombreproducto.setDisabledTextColor(new java.awt.Color(0, 102, 102));
+
+        txtsprecio.setDisabledTextColor(new java.awt.Color(0, 102, 102));
         txtsprecio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtsprecioActionPerformed(evt);
             }
         });
 
+        txtsstock.setDisabledTextColor(new java.awt.Color(0, 102, 102));
         txtsstock.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtsstockActionPerformed(evt);
@@ -303,6 +338,8 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jPanel6.setPreferredSize(new java.awt.Dimension(554, 130));
 
         jLabel13.setText("Precio de Venta:");
+
+        txtsprecioventa.setDisabledTextColor(new java.awt.Color(204, 0, 51));
 
         btnhabilitar.setText("Habilitar");
         btnhabilitar.addActionListener(new java.awt.event.ActionListener() {
@@ -584,17 +621,18 @@ public class FormVentas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btncobrarActionPerformed
 
-    private void txtbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyReleased
+    private void txtsbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyReleased
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.BuscarCliente(txtsbuscarcliente, tbclientes);
+    }//GEN-LAST:event_txtsbuscarclienteKeyReleased
 
-    }//GEN-LAST:event_txtbuscarclienteKeyReleased
+    private void txtsbuscarclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyTyped
 
-    private void txtbuscarclienteKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyTyped
+    }//GEN-LAST:event_txtsbuscarclienteKeyTyped
 
-    }//GEN-LAST:event_txtbuscarclienteKeyTyped
-
-    private void txtbuscarclienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarclienteKeyPressed
+    private void txtsbuscarclienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyPressed
         // TODO a handling code here:
-    }//GEN-LAST:event_txtbuscarclienteKeyPressed
+    }//GEN-LAST:event_txtsbuscarclienteKeyPressed
 
     private void txtbuscarproductosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtbuscarproductosKeyReleased
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
@@ -609,6 +647,15 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private void btnhabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhabilitarActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnhabilitarActionPerformed
+
+    private void tbclientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbclientesKeyReleased
+
+    }//GEN-LAST:event_tbclientesKeyReleased
+
+    private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.SeleccionarClienteVenta(tbclientes, txtsidcliente, txtsnombrecliente, txtsappaterno, txtsapmaterno);
+    }//GEN-LAST:event_tbclientesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -651,11 +698,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private javax.swing.JTable tbclientes;
     private javax.swing.JTable tbproductos;
     private javax.swing.JTable tbresumenventa;
-    private javax.swing.JTextField txtbuscarcliente;
     private javax.swing.JTextField txtbuscarproductos;
     private javax.swing.JTextField txtcantidadventa;
     private javax.swing.JTextField txtsapmaterno;
     private javax.swing.JTextField txtsappaterno;
+    private javax.swing.JTextField txtsbuscarcliente;
     private javax.swing.JTextField txtsidcliente;
     private javax.swing.JTextField txtsidproducto;
     private javax.swing.JTextField txtsnombrecliente;
