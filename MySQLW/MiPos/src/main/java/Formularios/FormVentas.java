@@ -459,6 +459,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
         jLabel17.setText("Seleccionar para eliminar:");
 
         btneliminarresumenventa.setText("Eliminar");
+        btneliminarresumenventa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btneliminarresumenventaActionPerformed(evt);
+            }
+        });
 
         tbresumenventa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -610,7 +615,8 @@ public class FormVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtsprecioActionPerformed
 
     private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.pasarProductosVenta(tbresumenventa, txtsidproducto, txtsnombreproducto, txtsprecio, txtcantidadventa, txtsstock);
     }//GEN-LAST:event_btnagregarproductoActionPerformed
 
     private void jPanel4ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentHidden
@@ -656,6 +662,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
         objetoVenta.SeleccionarClienteVenta(tbclientes, txtsidcliente, txtsnombrecliente, txtsappaterno, txtsapmaterno);
     }//GEN-LAST:event_tbclientesMouseClicked
+
+    private void btneliminarresumenventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarresumenventaActionPerformed
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.eliminarProductosSeleccionadosResumenVenta(tbresumenventa);
+    }//GEN-LAST:event_btneliminarresumenventaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
