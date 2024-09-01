@@ -467,10 +467,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
         tbresumenventa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "ID PRODUCTO", "N.PRODUCTO", "PRECIO.PROD.", "CANTI.PROD.", "SUB.TOTAL"
@@ -617,6 +614,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
         objetoVenta.pasarProductosVenta(tbresumenventa, txtsidproducto, txtsnombreproducto, txtsprecio, txtcantidadventa, txtsstock);
+        objetoVenta.calcularTotalPagar(tbresumenventa, lbliva, lbltotal);
     }//GEN-LAST:event_btnagregarproductoActionPerformed
 
     private void jPanel4ComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jPanel4ComponentHidden
@@ -624,7 +622,8 @@ public class FormVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jPanel4ComponentHidden
 
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
-        // TODO add your handling code here:
+        Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
+        objetoVenta.crearFactura(txtsidcliente);
     }//GEN-LAST:event_btncobrarActionPerformed
 
     private void txtsbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyReleased
@@ -666,6 +665,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private void btneliminarresumenventaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneliminarresumenventaActionPerformed
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
         objetoVenta.eliminarProductosSeleccionadosResumenVenta(tbresumenventa);
+        objetoVenta.calcularTotalPagar(tbresumenventa, lbliva, lbltotal);
     }//GEN-LAST:event_btneliminarresumenventaActionPerformed
 
 

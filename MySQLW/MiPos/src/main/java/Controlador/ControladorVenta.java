@@ -4,8 +4,11 @@
  */
 package Controlador;
 
+import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -173,6 +176,46 @@ public class ControladorVenta {
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error al seleccionar: "+e.toString());
             }
+        }
+        
+        
+        public void calcularTotalPagar(JTable tablaResumen, JLabel IVA, JLabel totalPagar ){
+            DefaultTableModel modelo = (DefaultTableModel) tablaResumen.getModel();
+            
+            double totalSubtotal=0;
+            double iva=0.18;
+            double totaliva=0;
+            
+            DecimalFormat formato = new DecimalFormat("#.##");
+            
+            for (int i=0;i<modelo.getRowCount();i++){
+                totalSubtotal = Double.parseDouble(formato.format(totalSubtotal+(double)modelo.getValueAt(i, 4)));
+                totaliva = Double.parseDouble(formato.format(iva*totalSubtotal));
+                totalPagar.setText(String.valueOf(totalSubtotal));
+                IVA.setText(String.valueOf(totaliva));
+            }
+        }
+        
+        public void crearFactura(JTextField codCliente){
+            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+            Modelos.ModeloCliente objetoCliente = new Modelos.ModeloCliente();
+            
+            String consulta = "insert into factura (fechaFactura,fkcliente) values (curdate(),?);";
+            
+            try {
+                objetoCliente.setIdCliente(Integer.parseInt(codCliente.getText()));
+                
+                CallableStatement cs = objetoConexion.estableceConexion().prepareCall(consulta);
+                cs.setInt(1,objetoCliente.getIdCliente());
+                
+                cs.execute();
+                
+                JOptionPane.showMessageDialog(null, "Factura creada.");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al crear factura."+e.toString());
+            } finally {
+                objetoConexion.cerrarConexion();
+            }  
         }
         
 }
