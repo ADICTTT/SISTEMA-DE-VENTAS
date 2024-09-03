@@ -349,6 +349,11 @@ public class FormVentas extends javax.swing.JInternalFrame {
         });
 
         btndeshabilitar.setText("Deshabilitar");
+        btndeshabilitar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btndeshabilitarActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Cant. Venta:");
 
@@ -613,7 +618,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
 
     private void btnagregarproductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnagregarproductoActionPerformed
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
-        objetoVenta.pasarProductosVenta(tbresumenventa, txtsidproducto, txtsnombreproducto, txtsprecio, txtcantidadventa, txtsstock);
+        objetoVenta.pasarProductosVenta(tbresumenventa, txtsidproducto, txtsnombreproducto, txtsprecioventa, txtcantidadventa, txtsstock);
         objetoVenta.calcularTotalPagar(tbresumenventa, lbliva, lbltotal);
     }//GEN-LAST:event_btnagregarproductoActionPerformed
 
@@ -625,6 +630,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
         objetoVenta.crearFactura(txtsidcliente);
         objetoVenta.realizarVenta(tbresumenventa);
+        objetoVenta.limpiarCamposLuegoVenta(txtsbuscarcliente, tbclientes, txtbuscarproductos, tbproductos, txtsidcliente, txtsnombrecliente, txtsappaterno, txtsapmaterno, txtsidproducto, txtsnombreproducto, txtsprecio, txtsstock, txtsprecioventa, txtcantidadventa, tbresumenventa, lbliva, lbltotal);
     }//GEN-LAST:event_btncobrarActionPerformed
 
     private void txtsbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyReleased
@@ -651,7 +657,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbproductosMouseClicked
 
     private void btnhabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnhabilitarActionPerformed
-        // TODO add your handling code here:
+        txtsprecioventa.setEnabled(true);
     }//GEN-LAST:event_btnhabilitarActionPerformed
 
     private void tbclientesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbclientesKeyReleased
@@ -668,6 +674,10 @@ public class FormVentas extends javax.swing.JInternalFrame {
         objetoVenta.eliminarProductosSeleccionadosResumenVenta(tbresumenventa);
         objetoVenta.calcularTotalPagar(tbresumenventa, lbliva, lbltotal);
     }//GEN-LAST:event_btneliminarresumenventaActionPerformed
+
+    private void btndeshabilitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btndeshabilitarActionPerformed
+        txtsprecioventa.setEnabled(false);
+    }//GEN-LAST:event_btndeshabilitarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

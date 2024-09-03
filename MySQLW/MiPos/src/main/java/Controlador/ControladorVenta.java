@@ -254,4 +254,41 @@ public class ControladorVenta {
             }
         }
         
+        public void limpiarCamposLuegoVenta(JTextField buscarCliente, JTable tablaCliente, JTextField buscarProducto, JTable tablaProducto,
+                JTextField selectIdCliente, JTextField selectNombreCliente,JTextField selectAppaternoCliente,
+                JTextField selectapMaternoCliente, JTextField selectIdProducto, JTextField selectNombreProducto,
+                JTextField selectPrecioProducto, JTextField selectStockProducto, JTextField precioVenta,
+                JTextField cantidadVenta, JTable tablaResumen, JLabel IVA, JLabel total){
+            
+            buscarCliente.setText("");
+            buscarCliente.requestFocus();
+            DefaultTableModel modeloCliente = (DefaultTableModel) tablaCliente.getModel();
+            modeloCliente.setRowCount(0);
+            
+            buscarProducto.setText("");
+            DefaultTableModel modeloProducto = (DefaultTableModel) tablaProducto.getModel();
+            modeloProducto.setRowCount(0);
+            
+            selectIdCliente.setText("");
+            selectNombreCliente.setText("");
+            selectAppaternoCliente.setText("");
+            selectapMaternoCliente.setText("");
+            
+            selectIdProducto.setText("");
+            selectNombreProducto.setText("");
+            selectPrecioProducto.setText("");
+            selectStockProducto.setText("");
+            
+            precioVenta.setText("");
+            precioVenta.setEnabled(false);
+            
+            cantidadVenta.setText("");
+            DefaultTableModel modeloResumenVenta = (DefaultTableModel) tablaResumen.getModel();
+            modeloResumenVenta.setRowCount(0);
+            
+            IVA.setText("----");
+            total.setText("----");
+            
+        }
+        
 }
