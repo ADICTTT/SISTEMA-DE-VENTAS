@@ -218,4 +218,40 @@ public class ControladorVenta {
             }  
         }
         
+        
+        public void realizarVenta(JTable tablaResumenVenta){
+            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+            
+            String consultaDetalle = "insert into detalle (fkfactura,fkproducto,cantidad,precioVenta) values ((SELECT MAX(idfactura) from factura),?,?,?);";
+            String consultaStock = "update producto set producto.stock = stock-? where idproducto = ?;";
+            
+            try {
+                PreparedStatement psDetalle = objetoConexion.estableceConexion().prepareStatement(consultaDetalle);
+
+                PreparedStatement psStock = objetoConexion.estableceConexion().prepareStatement(consultaStock);            
+                int filas = tablaResumenVenta.getRowCount();
+                
+                for(int i = 0; i<filas;i++){
+                    int idProducto = Integer.parseInt(tablaResumenVenta.getValueAt(i, 0).toString());
+                    int cantidad = Integer.parseInt(tablaResumenVenta.getValueAt(i, 3).toString());
+                    double precioVenta = Double.parseDouble(tablaResumenVenta.getValueAt(i, 2).toString());
+                    
+                    psDetalle.setInt(1, idProducto);
+                    psDetalle.setInt(2, cantidad);
+                    psDetalle.setDouble(3, precioVenta);
+                    psDetalle.executeUpdate();
+                    
+                    psStock.setInt(1, cantidad);
+                    psStock.setInt(2, idProducto);
+                    psStock.executeUpdate();
+                }
+                
+                JOptionPane.showMessageDialog(null, "Venta realizada");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al vender: "+e.toString());
+            } finally {
+                objetoConexion.cerrarConexion();
+            }
+        }
+        
 }

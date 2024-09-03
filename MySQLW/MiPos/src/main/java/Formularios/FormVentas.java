@@ -624,6 +624,7 @@ public class FormVentas extends javax.swing.JInternalFrame {
     private void btncobrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncobrarActionPerformed
         Controlador.ControladorVenta objetoVenta = new Controlador.ControladorVenta();
         objetoVenta.crearFactura(txtsidcliente);
+        objetoVenta.realizarVenta(tbresumenventa);
     }//GEN-LAST:event_btncobrarActionPerformed
 
     private void txtsbuscarclienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtsbuscarclienteKeyReleased
