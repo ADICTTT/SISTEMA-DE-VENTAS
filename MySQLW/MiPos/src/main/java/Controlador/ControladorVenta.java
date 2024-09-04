@@ -265,7 +265,7 @@ public class ControladorVenta {
             DefaultTableModel modeloCliente = (DefaultTableModel) tablaCliente.getModel();
             modeloCliente.setRowCount(0);
             
-            buscarProducto.setText("");
+            buscarProducto.setText(""); 
             DefaultTableModel modeloProducto = (DefaultTableModel) tablaProducto.getModel();
             modeloProducto.setRowCount(0);
             
@@ -289,6 +289,25 @@ public class ControladorVenta {
             IVA.setText("----");
             total.setText("----");
             
+        }
+        
+        public void MostrarUltimaFactura( JLabel ultimaFactura){
+            Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+            try {
+                String consulta = "SELECT MAX(idfactura) as UltimaFactura from factura;";
+                
+                PreparedStatement ps = objetoConexion.estableceConexion().prepareStatement(consulta);
+                
+                ResultSet rs = ps.executeQuery();
+                
+                if(rs.next()){
+                    ultimaFactura.setText(String.valueOf(rs.getInt("UltimaFactura")));
+                }   
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al mostrar la ultima factura: "+e.toString());
+            } finally {
+                objetoConexion.cerrarConexion();
+            }
         }
         
 }

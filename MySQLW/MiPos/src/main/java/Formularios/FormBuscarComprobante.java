@@ -4,6 +4,8 @@
  */
 package Formularios;
 
+import Controlador.ControladorReportes;
+
 /**
  *
  * @author ADRIANA
@@ -58,6 +60,11 @@ public class FormBuscarComprobante extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("INGRESAR NUMERO DE FACTURA"));
 
         btnbuscarfactura.setText("Buscar");
+        btnbuscarfactura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnbuscarfacturaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -223,6 +230,11 @@ public class FormBuscarComprobante extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnbuscarfacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarfacturaActionPerformed
+        Controlador.ControladorReportes objetoReportes = new Controlador.ControladorReportes();
+        objetoReportes.BuscarFacturaMostrarDatosCliente(txtnumerofactura, lblfactura, lblfechafactura, lblnombrecliente, lblappaterno, lblapmaterno);
+    }//GEN-LAST:event_btnbuscarfacturaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
