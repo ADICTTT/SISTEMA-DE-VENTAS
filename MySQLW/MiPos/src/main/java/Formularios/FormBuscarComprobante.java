@@ -122,7 +122,7 @@ public class FormBuscarComprobante extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
                     .addComponent(lblappaterno))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(lblapmaterno))
@@ -156,7 +156,7 @@ public class FormBuscarComprobante extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(tbproductos);
 
-        jLabel12.setText("jLabel12");
+        jLabel12.setText("Productos");
 
         jLabel13.setText("IVA:");
 
