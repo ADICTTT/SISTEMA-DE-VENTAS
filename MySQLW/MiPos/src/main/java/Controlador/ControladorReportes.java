@@ -6,9 +6,12 @@ package Controlador;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.DecimalFormat;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -46,6 +49,52 @@ public class ControladorReportes {
         } finally {
             objetoCConexion.cerrarConexion();
         }
+    }
+    
+    public void BuscarFacturaMostrarDatosProductos(JTextField numeroFactura, JTable tablaProductos, JLabel IVA, JLabel total){
+       Configuracion.CConexion objetoConexion = new Configuracion.CConexion();
+        DefaultTableModel modelo = new DefaultTableModel();
+        
+        modelo.addColumn("N.Producto");
+        modelo.addColumn("Cantidad");
+        modelo.addColumn("PrecioVenta");
+        modelo.addColumn("Subtotal");
+        
+        tablaProductos.setModel(modelo);
+        
+        try {
+            String consulta = "SELECT producto.nombre, detalle.cantidad,detalle.precioVenta from detalle INNER JOIN factura ON factura.idfactura = detalle.fkfactura INNER JOIN producto ON producto.idproducto = detalle.fkproducto WHERE factura.idfactura=?;";
+            PreparedStatement ps = objetoConexion.estableceConexion().prepareStatement(consulta);
+            ps.setInt(1, Integer.parseInt(numeroFactura.getText()));
+            ResultSet rs = ps.executeQuery();
+            
+            double totalFactura = 0.0;
+            double valorIVA = 0.18;
+            
+            DecimalFormat formato = new DecimalFormat("#.##");
+            
+            while(rs.next()){
+                String nombreProducto = rs.getString("nombre");
+                int cantidad = rs.getInt("cantidad");
+                double precioVenta = rs.getDouble("precioVenta");
+                double subtotal = cantidad* precioVenta;
+                
+                totalFactura = Double.parseDouble(formato.format(totalFactura+subtotal));
+                
+                modelo.addRow(new Object[]{nombreProducto,cantidad,precioVenta,subtotal});
+            }
+            
+            double totalIVA = Double.parseDouble(formato.format(totalFactura*valorIVA));
+            IVA.setText(String.valueOf(totalIVA));
+            
+            total.setText(String.valueOf(totalFactura));
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al mostrar los productos de la factura: "+e.toString());
+        } finally {
+            objetoConexion.cerrarConexion();
+        }
+        
     }
     
 }
