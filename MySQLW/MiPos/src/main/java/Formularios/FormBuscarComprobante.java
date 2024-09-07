@@ -234,6 +234,7 @@ public class FormBuscarComprobante extends javax.swing.JInternalFrame {
     private void btnbuscarfacturaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnbuscarfacturaActionPerformed
         Controlador.ControladorReportes objetoReportes = new Controlador.ControladorReportes();
         objetoReportes.BuscarFacturaMostrarDatosCliente(txtnumerofactura, lblfactura, lblfechafactura, lblnombrecliente, lblappaterno, lblapmaterno);
+        objetoReportes.BuscarFacturaMostrarDatosProductos(txtnumerofactura, tbproductos, lbliva, lbltotal);
     }//GEN-LAST:event_btnbuscarfacturaActionPerformed
 
 
